@@ -12,6 +12,8 @@ spec:
       labels:
         app: frontend
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
         - name: frontend
           image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:v13

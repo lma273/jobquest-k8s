@@ -12,6 +12,8 @@ spec:
       labels:
         app: backend
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
         - name: backend
           image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/backend:v10
