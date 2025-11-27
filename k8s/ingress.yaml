@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: "gce"
     kubernetes.io/ingress.allow-http: "true"
     kubernetes.io/ingress.global-static-ip-name: "jobquest-static-ip"
-    networking.gke.io/managed-certificates: "jobquest-cert"
+    networking.gke.io/managed-certificates: "jobquest-cert-new"
 spec:
   rules:
   - host: jobquest-ptud.site
