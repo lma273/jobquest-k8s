@@ -4,61 +4,71 @@ metadata:
   name: jobquest-ingress
   annotations:
     kubernetes.io/ingress.class: "gce"
-    networking.gke.io/managed-certificates: "jobquest-cert"
     kubernetes.io/ingress.allow-http: "true"
     kubernetes.io/ingress.global-static-ip-name: "jobquest-static-ip"
+    networking.gke.io/managed-certificates: "jobquest-cert-new"
 spec:
   rules:
-    - http:
-        paths:
+  - host: jobquest-ptud.site
+    http:
+      paths:
+      - path: /recruiters
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8080
 
-          # 🔥 Backend routes (match tất cả API)
-          - path: /recruiters
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-service
-                port:
-                  number: 8080
+      - path: /candidates
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8080
 
-          - path: /candidates
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-service
-                port:
-                  number: 8080
+      - path: /auth
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8080
 
-          - path: /auth
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-service
-                port:
-                  number: 8080
+      - path: /jobs
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8080
 
-          - path: /jobs
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-service
-                port:
-                  number: 8080
+      - path: /applications
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8080
 
-          - path: /applications
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-service
-                port:
-                  number: 8080
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 80
 
-          # 🔥 Frontend catch-all
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend-service
-                port:
-                  number: 80
+  - host: www.jobquest-ptud.site
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 80
+
 
