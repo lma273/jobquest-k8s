@@ -25,19 +25,20 @@ jobs:
       # 3️⃣ Update backend image tag
       - name: Update backend image tag
         run: |
-          sed -i 's|image: .*backend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/backend:${{ github.event.client_payload.backend_tag }}|' k8s/backend-deployment.yaml
+          sed -i 's|image: .*backend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/backend:${{ github.event.client_payload.backend_tag }}|' k8s/backend.yaml
 
       # 4️⃣ Update frontend image tag
       - name: Update frontend image tag
         run: |
-          sed -i 's|image: .*frontend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|' k8s/frontend-deployment.yaml
+          sed -i 's|image: .*frontend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|' k8s/frontend.yaml
 
       # 5️⃣ Commit & push changes
       - name: Commit & push changes
         run: |
           git add .
-          git commit -m "Update image tags" --allow-empty
+          git diff --quiet && echo "No changes to commit" || git commit -m "Update image tags"
           git push
+      # git commit -m "Update image tags" --allow-empty
 
       # 6️⃣ Sync Argo CD
       - name: Argo CD sync
