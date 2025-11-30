@@ -26,11 +26,13 @@ jobs:
         run: |
           sed -i 's|image: .*backend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/backend:${{ github.event.client_payload.backend_tag }}|' k8s/backend.yaml
 
-      # # Update frontend tag
-      # - name: Update frontend image tag
-      #   if: ${{ github.event.client_payload.frontend_tag }}
-      #   run: |
-      #     sed -i 's|image: .*frontend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|' k8s/frontend.yaml
+      # ⭐ Debug: in ra dòng image hiện tại trong frontend.yaml
+      - name: Debug print frontend.yaml image lines
+        run: |
+          echo "=== Lines containing 'image' ==="
+          grep -n "image" k8s/frontend.yaml
+          echo "=== Hex dump (tìm ký tự lạ) ==="
+          xxd k8s/frontend.yaml
 # Update frontend tag
       - name: Update frontend image tag
         if: ${{ github.event.client_payload.frontend_tag }}
@@ -44,7 +46,8 @@ jobs:
           git add .
           git diff --quiet && echo "No changes to commit" || git commit -m "Update image tags"
           git push https://lma273:${{ secrets.PAT }}@github.com/lma273/jobquest-k8s.git
-          
+
+
       # 6️⃣ Install ArgoCD CLI
       - name: Install ArgoCD CLI (latest stable)
         run: |
