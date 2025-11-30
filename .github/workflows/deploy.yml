@@ -38,8 +38,11 @@ jobs:
         if: ${{ github.event.client_payload.frontend_tag }}
         run: |
           sed -i "s|image: .*/frontend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|" k8s/frontend.yaml
-
-
+      
+      - name: Debug – print image line after sed
+        run: |
+          echo "=== After sed ==="
+          grep -n "image:" k8s/frontend.yaml
 
       # Commit & push changes
       - name: Commit & push
