@@ -35,7 +35,8 @@ jobs:
       - name: Update frontend image tag
         if: ${{ github.event.client_payload.frontend_tag }}
         run: |
-          sed -i "s|asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:.*|asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|" k8s/frontend.yaml
+          sed -i "s|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|" k8s/frontend.yaml
+
 
       # Commit & push changes
       - name: Commit & push
