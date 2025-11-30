@@ -49,12 +49,18 @@ jobs:
       # ArgoCD sync
       - name: Argo CD sync
         run: |
-          argocd login "${{ secrets.ARGO_SERVER }}" \
+          # argocd login "${{ secrets.ARGO_SERVER }}" \
+          # --username admin \
+          # --password "${{ secrets.ARGO_TOKEN }}" \
+          # --insecure \
+          # --grpc-web
+          argocd login argocd.jobquest-ptud.site \
           --username admin \
-          --password "${{ secrets.ARGO_TOKEN }}" \
+          --password admin123 \
           --insecure \
           --grpc-web
 
-          argocd app sync my-app
+
+          argocd app sync dn-btl
 
 
