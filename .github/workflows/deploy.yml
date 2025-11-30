@@ -52,5 +52,11 @@ jobs:
           ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
           ARGOCD_TOKEN: ${{ secrets.ARGOCD_TOKEN }}
         run: |
-          argocd login  $ARGOCD_SERVER --username admin --password $ARGOCD_TOKEN --insecure --grpc-web
+          argocd login $ARGOCD_SERVER \
+          --username admin \
+          --password $ARGOCD_TOKEN \
+          --insecure \
+          --grpc-web
+
           argocd app sync my-app
+
