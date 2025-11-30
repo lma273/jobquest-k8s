@@ -48,15 +48,13 @@ jobs:
 
       # ArgoCD sync
       - name: Argo CD sync
-        env:
-          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
-          ARGOCD_TOKEN: ${{ secrets.ARGOCD_TOKEN }}
         run: |
-          argocd login $ARGOCD_SERVER \
+          argocd login "${{ secrets.ARGOCD_SERVER }}" \
           --username admin \
-          --password $ARGOCD_TOKEN \
+          --password "${{ secrets.ARGOCD_TOKEN }}" \
           --insecure \
           --grpc-web
 
           argocd app sync my-app
+
 
