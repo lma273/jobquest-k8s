@@ -49,9 +49,9 @@ jobs:
       # ArgoCD sync
       - name: Argo CD sync
         run: |
-          argocd login "${{ secrets.ARGOCD_SERVER }}" \
+          argocd login "${{ secrets.ARGO_SERVER }}" \
           --username admin \
-          --password "${{ secrets.ARGOCD_TOKEN }}" \
+          --password "${{ secrets.ARGO_TOKEN }}" \
           --insecure \
           --grpc-web
 
