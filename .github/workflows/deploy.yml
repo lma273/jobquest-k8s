@@ -48,9 +48,10 @@ jobs:
       - name: Commit & push
         run: |
           git add .
-          git diff --quiet && echo "No changes to commit" || git commit -m "Update image tags"
+          git commit -m "Update image tags" || echo "No changes to commit"
           git push https://lma273:${{ secrets.PAT }}@github.com/lma273/jobquest-k8s.git
 
+      # git diff --quiet && echo "No changes to commit" || git commit -m "Update image tags"
 
       # 6️⃣ Install ArgoCD CLI
       - name: Install ArgoCD CLI (latest stable)
