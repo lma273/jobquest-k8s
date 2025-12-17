@@ -18,4 +18,5 @@ spec:
           service:
             name: argocd-server
             port:
-              number: 8080   # must be 80 for GKE Ingress
+              number: 80   # must be 80 for GKE Ingress 
+
