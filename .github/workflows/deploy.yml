@@ -24,7 +24,7 @@ jobs:
       - name: Update backend image tag
         if: ${{ github.event.client_payload.backend_tag }}
         run: |
-          sed -i "s|image: .*/backend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/backend:${{ github.event.client_payload.backend_tag }}|" k8s/backend.yaml
+          sed -i "s|image: .*/backend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai-481413/jobquest-repo/backend:${{ github.event.client_payload.backend_tag }}|" k8s/backend.yaml
       # ⭐ Debug: in ra dòng image hiện tại trong frontend.yaml
       - name: Debug print frontend.yaml image lines
         run: |
@@ -36,7 +36,7 @@ jobs:
       - name: Update frontend image tag
         if: ${{ github.event.client_payload.frontend_tag }}
         run: |
-          sed -i "s|image: .*/frontend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|" k8s/frontend.yaml
+          sed -i "s|image: .*/frontend:.*|image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai-481413/jobquest-repo/frontend:${{ github.event.client_payload.frontend_tag }}|" k8s/frontend.yaml
       
       - name: Debug – print image line after sed
         run: |
