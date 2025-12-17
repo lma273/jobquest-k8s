@@ -18,7 +18,24 @@ spec:
           service:
             name: argocd-server
             port:
-              number: 8080   # must be 80 for GKE Ingress 
+              number: 80  # must be 80 for GKE Ingress 
+
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec:
+  selector:
+    app.kubernetes.io/name: argocd-server
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+
 
 
 
