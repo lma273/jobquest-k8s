@@ -6,7 +6,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "gce"
     kubernetes.io/ingress.allow-http: "true"
-    kubernetes.io/ingress.global-static-ip-name: "jobquest-static-ip"
     networking.gke.io/managed-certificates: "argocd-cert"
 spec:
   rules:
@@ -19,6 +18,7 @@ spec:
           service:
             name: argocd-server
             port:
-              number: 80   # must be 80 for GKE Ingress 
+              number: 8080   # must be 80 for GKE Ingress 
+
 
 
