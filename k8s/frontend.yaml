@@ -16,7 +16,7 @@ spec:
         - name: regcred
       containers:
         - name: frontend
-          image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai-481413/jobquest-repo/frontend:2d376d1a547f20c58fed0f1f0a886a537380cc83
+          image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai-481413/jobquest-repo/frontend:726353d9b995c2373b8c40d6c2d3cb9ba289e285
           ports:
             - containerPort: 80
 ---
