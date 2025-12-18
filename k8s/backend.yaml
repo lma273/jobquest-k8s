@@ -14,11 +14,20 @@ spec:
     spec:
       imagePullSecrets:
         - name: regcred
+      # 1️⃣ KHAI BÁO VOLUME (Thêm đoạn này)
+      volumes:
+        - name: uploads-storage
+          persistentVolumeClaim:
+            claimName: candidate-uploads-pvc # Phải trùng tên với file pvc ở Bước 2
       containers:
         - name: backend
           image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai-481413/jobquest-repo/backend:2becfa9277b0458c6e968d8661afb76259f71163
           ports:
             - containerPort: 8080
+          # 2️⃣ GẮN VOLUME VÀO CONTAINER (Thêm đoạn này)
+          volumeMounts:
+            - name: uploads-storage
+              mountPath: /app/uploads # Khớp với code Java: Paths.get("uploads")
           env:
             - name: PORT
               value: "8080"

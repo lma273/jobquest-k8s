@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: candidate-uploads-pvc
+  namespace: default # Đảm bảo đúng namespace với backend
+spec:
+  accessModes:
+    - ReadWriteOnce # Một node đọc/ghi (phù hợp với Deployment 1 replica)
+  storageClassName: standard-rwo # Loại ổ đĩa chuẩn của GKE
+  resources:
+    requests:
+      storage: 10Gi # Dung lượng 10GB (tùy chỉnh theo nhu cầu)
