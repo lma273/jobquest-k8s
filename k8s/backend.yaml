@@ -21,7 +21,7 @@ spec:
             claimName: candidate-uploads-pvc # Phải trùng tên với file pvc ở Bước 2
       containers:
         - name: backend
-          image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai-481413/jobquest-repo/backend:d7a5e52ad5c165acb029ff7dc487df9279b2bc61
+          image: asia-southeast1-docker.pkg.dev/jobquest-ptud-hai-481413/jobquest-repo/backend:448dacbe1e246141be4facb71dc50c9460839c23
           ports:
             - containerPort: 8080
           # 2️⃣ GẮN VOLUME VÀO CONTAINER (Thêm đoạn này)
